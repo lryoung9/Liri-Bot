@@ -21,8 +21,6 @@ npm install node-spotify-api
      * The song's name
      
      * A preview link of the song from Spotify
-     
-     * The album that the song is from
 
    * If no song is provided then your program will default to "Pen-Pineapple-Apple-Pen" by Pikotaro.
       
