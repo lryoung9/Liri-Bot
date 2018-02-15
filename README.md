@@ -1,6 +1,7 @@
 # LIRI Bot
 LIRI is like iPhone's SIRI. However, while SIRI is a Speech Interpretation and Recognition Interface, LIRI is a _Language_ Interpretation and Recognition Interface. LIRI will be a command line node app that takes in parameters and gives you back data.
 ### NPM Installs
+Simply run `npm install` to install all the necessary packages and dependencies.
 ```
 npm install request
 npm install dotenv
