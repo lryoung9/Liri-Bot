@@ -38,7 +38,7 @@ var Spotify = require('node-spotify-api');
 // Import the keys.js file and store it in a variable
 var spotify = new Spotify(keys.spotify);
 // spotify function
-function spotify() {
+function spotifyThis() {
 	if (process.argv.length > 3) {
 		spotify.search({ type: 'track', query: process.argv[3] }, function(error, data) {
   			if (error) {
@@ -52,8 +52,8 @@ function spotify() {
   			if (error) {
     			return console.log('Error occurred: ' + error);
   			} else {
-  				console.log("You asked for it, but not asking for anything. Please enjoy the following:")
-  				console.log(`${JSON.parse(data).name} by ${JSON.parse(data).artists} on the album ${JSON.parse(data).album.name} \n Preview song here: ${JSON.parse(data).preview_url}`);
+  				console.log("You asked for it, by not asking for anything. Please enjoy the following:")
+  				console.log(`${JSON.stringify(data).name} by ${JSON.stringify(data).artists} on the album ${JSON.stringify(data).album.name} \n Preview song here: ${JSON.stringify(data).preview_url}`);
   			}
 		})
 	}
@@ -63,7 +63,7 @@ function spotify() {
 // OMBD
 // -----------------------------------------------------
 var request = require("request");
-function printMovieData() {
+function printMovieData(body) {
 	// Parse the body of the site
 	// Title of the movie.
 	console.log(`Title: ${JSON.parse(body).Title}`)
@@ -88,10 +88,10 @@ function printMovieData() {
 function movies() {
 	if (process.argv.length > 3) {
 		// Then run a request to the OMDB API with the movie specified
-		request("http://www.omdbapi.com/?t=remember+the+titans&y=&plot=short&apikey=trilogy", function(error, response, body) {
+		request("http://www.omdbapi.com/?t=" + process.argv[3] + "&y=&plot=short&apikey=trilogy", function(error, response, body) {
 			// If the request is successful (i.e. if the response status code is 200)
 			if (!error && response.statusCode === 200) {
-				printMovieData();
+				printMovieData(body);
 			}
 		});		
 	} else {
@@ -100,7 +100,7 @@ function movies() {
 			if (error) {
 				return console.log(`Error occurred: ${error}`)
 			} else {
-				printMovieData();
+				printMovieData(body);
 			}
 		})
 	}
@@ -138,7 +138,7 @@ switch(command){
 		tweets();
 		break;
 	case "spotify-this-song":
-		spotify();
+		spotifyThis();
 		break;
 	case "movie-this":
 		movies();
