@@ -127,24 +127,28 @@ function whatever() {
 		// Set the random command equal to the command to run
 		command = doWhat[0];
 		// Set the random song to equal the song search
-		song = doWhat[1];
+		process.argv[3] = doWhat[1];
+		execute(command);
 	});
 	// It should run spotify-this-song for "I Want it That Way," as follows the text in random.txt.
 }
 // -----------------------------------------------------
 
-var command = process.argv[2];
-switch(command){
-	case "my-tweets":
-		tweets();
-		break;
-	case "spotify-this-song":
-		spotifyThis();
-		break;
-	case "movie-this":
-		movies();
-		break;
-	case "do-what-it-says":
-		whatever();
-		break;
+function execute(passedInCommand) {
+	var command = passedInCommand || process.argv[2];
+	switch(command){
+		case "my-tweets":
+			tweets();
+			break;
+		case "spotify-this-song":
+			spotifyThis();
+			break;
+		case "movie-this":
+			movies();
+			break;
+		case "do-what-it-says":
+			whatever();
+			break;
+	}
 }
+execute();
