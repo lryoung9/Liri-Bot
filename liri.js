@@ -44,20 +44,21 @@ function spotifyThis() {
   			if (error) {
     			return console.log("Error occurred: " + error);
   			} else {
-  				console.log(`${JSON.parse(data).name} by ${JSON.parse(data).artists} on the album ${JSON.parse(data).album.name} \n Preview song here: ${JSON.parse(data).preview_url}`);
+  				console.log(`${(data.tracks.items[0].name)} by ${(data.tracks.items[0].artists[0].name)} \n Preview song here: ${(data.tracks.items[0].preview_url)}`);
   			}
 		})
 	} else {
-		spotify.search({ type: 'track', query: 'ppap' }, function(error, data) {
+		spotify.search({ type: 'track', query: 'ppap' , limit: 1}, function(error, data) {
   			if (error) {
     			return console.log('Error occurred: ' + error);
   			} else {
-  				console.log("You asked for it, by not asking for anything. Please enjoy the following:")
-  				console.log(`${JSON.stringify(data).name} by ${JSON.stringify(data).artists} on the album ${JSON.stringify(data).album.name} \n Preview song here: ${JSON.stringify(data).preview_url}`);
+  				console.log("You asked for it...by not asking for anything. Please enjoy the following:")
+  				console.log(`${(data.tracks.items[0].name)} by ${(data.tracks.items[0].artists[0].name)} \n Preview song here: ${(data.tracks.items[0].preview_url)}`);
   			}
 		})
 	}
 };
+
 // -----------------------------------------------------
 
 // OMBD
